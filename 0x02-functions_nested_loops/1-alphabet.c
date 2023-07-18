@@ -1,27 +1,20 @@
 #include "main.h"
 
 /**
-* main - check the code
-*
-* Description: this program is to print the lowercase alphabet
-*
-* Return: Always 0.
-*/
-
-int main(void)
-{
-	print_alphabet();
-	return (0);
-}
+ * print_alphabet - Entry point
+ * Return:0
+ */
 
 void print_alphabet(void)
 {
-	int i;
+	char c = 'a';
 
-	for (i = 'a'; i <= 'z'; i++)
+	while (c <= 'z')
 	{
-		_putchar(i);
-	}
+		_putchar(c);
+		c++;
 
+	}
 	_putchar('\n');
+
 }
