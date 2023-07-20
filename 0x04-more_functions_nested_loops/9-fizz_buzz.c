@@ -29,8 +29,8 @@ int main(void)
 		{
 			printf("%d", i);
 		}
-
-		printf(" ");
+		if (i != 100)
+			printf(" ");
 	}
 
 	return (0);
