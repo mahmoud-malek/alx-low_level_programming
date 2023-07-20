@@ -19,12 +19,12 @@ int main(void)
 		{
 			maxf = n;
 			n /= div;
-		}
 
-		if (n == 1)
-		{
-			printf("%lu \n", maxf);
-			break;
+			if (n == 1)
+			{
+				printf("%lu \n", maxf);
+				break;
+			}
 		}
 	}
 
