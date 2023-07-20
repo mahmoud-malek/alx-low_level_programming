@@ -8,33 +8,25 @@
 
 int main(void)
 {
-	long int n = 612852475143;
-	long int largest_factor = 1;
-	long int i;
+	long int n = 612852475143, div = 2, maxf;
 
-
-	for (i = 2; i <= n; i++)
+	while (n > 0)
 	{
-		if (n % i == 0)
-		{
-			int is_prime = 1;
-			long int j;
+		if (n % div != 0)
+			div++;
 
-			for (j = 2; j <= (i / 2); j++)
+		else
+		{
+			maxf = n;
+			n /= div;
+
+			if (n == 1)
 			{
-				if (i % j == 0)
-				{
-					is_prime = 0;
-					break;
-				}
-			}
-			if (is_prime)
-			{
-				largest_factor = i;
+				printf("%ld\n", maxf);
+				break;
 			}
 		}
 	}
-	printf("%ld\n", largest_factor);
 
 	return (0);
 }
