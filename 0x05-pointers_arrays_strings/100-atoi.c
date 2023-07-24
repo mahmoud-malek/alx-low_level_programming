@@ -29,9 +29,6 @@ int _atoi(char *s)
 		ans += (s[i] - '0');
 	}
 
-	if (sign == -1 && ans > 0)
-		printf("-");
-
-	return (ans);
+	return (ans * sign);
 }
 
