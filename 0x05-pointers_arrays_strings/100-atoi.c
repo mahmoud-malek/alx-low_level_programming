@@ -9,7 +9,7 @@
 
 int _atoi(char *s)
 {
-	int ans = 0;
+	unsigned int ans = 0;
 	int sign = 1;
 	int i;
 
@@ -29,6 +29,9 @@ int _atoi(char *s)
 		ans += (s[i] - '0');
 	}
 
-	return (ans * sign);
+	if (sign == -1)
+		printf("-");
+
+	return (ans);
 }
 
