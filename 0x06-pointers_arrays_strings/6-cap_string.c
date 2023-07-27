@@ -21,15 +21,18 @@ char *cap_string(char *str)
 
 		while (str[i] != '\0')
 		{
-			if(str[i] == '\t' || str[i] == '\n' || str[i] == '.' || str[i] == ',' || str[i] == ' ')
+			if (str[i] == '\t' || str[i] == '\n')
 				break;
 
-				i++;
+			else if (str[i] == '.' || str[i] == ',' || str[i] == ' ')
+				break;
+
+			i++;
 		}
 
-		 if (str[i] == '\t')
+		if (str[i] == '\t')
 			str[i] = ' ';
 	}
 
-	return (str);	
+	return (str);
 }
