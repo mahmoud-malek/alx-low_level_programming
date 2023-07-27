@@ -2,9 +2,9 @@
 #include "main.h"
 
 /**
- * string_touppper - converts string to upper case
+ * string_toupper - converts string to upper case
  * @str: array
- * Return: pointer to resulting string 
+ * Return: pointer to resulting string
 */
 
 char *string_toupper(char *str)
@@ -19,5 +19,5 @@ char *string_toupper(char *str)
 		}
 	}
 
-	return (str);	
+	return (str);
 }
