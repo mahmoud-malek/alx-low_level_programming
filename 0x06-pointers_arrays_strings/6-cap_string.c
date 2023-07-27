@@ -41,8 +41,6 @@ char *cap_string(char *str)
 			i++;
 		}
 
-		if (str[i] == '\t')
-			str[i] = ' ';
 	}
 
 	return (str);
