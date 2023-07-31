@@ -12,7 +12,7 @@
 
 char *_strchr(char *s, char c)
 {
-	int i;
+	unsigned long int i;
 	char *ans = NULL;
 
 	for (i = 0; i < strlen(s); i++)
