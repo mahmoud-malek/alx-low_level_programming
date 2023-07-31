@@ -1,7 +1,5 @@
 #include "main.h"
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 
 /**
  * _strstr -  function that searches a string for any of a set of bytes.
@@ -15,31 +13,19 @@ char *_strstr(char *haystack, char *needle)
 
 	while (*haystack != '\0')
 	{
+		char *p = haystack;
+		char *q = needle;
 
-		if (*haystack == *needle)
+		while (*q != '\0' && *p == *q)
 		{
-			char *p = haystack;
-			 char *ptr = needle;
-			 int found = 1;
-
-			while (*ptr != '\0' && *p != '\0')
-			{
-				if (*ptr != *p)
-				{
-					found = 0;
-					break;
-				}
-					ptr++;
-					p++;
-			}
-
-			if (found)
-				return (haystack);
-
+			p++;
+			q++;
 		}
-
+		if (*q == '\0')
+		{
+			return (haystack);
+		}
 		haystack++;
 	}
-
 	return (NULL);
 }
