@@ -15,7 +15,7 @@ char *create_array(unsigned int size, char c)
 	char *res = array;
 
 
-	if (!size && array != NULL)
+	if (!size || array == NULL)
 	{
 		return (NULL);
 	}
