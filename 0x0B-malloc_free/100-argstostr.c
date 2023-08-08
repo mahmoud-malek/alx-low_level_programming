@@ -28,7 +28,7 @@ char *str_concat(char *s1, char *s2)
 		len2 =  strlen(s2);
 
 
-	res = malloc(len1 + len2);
+	res = malloc(len1 + len2 + 1);
 
 	if (res == NULL)
 		return (NULL);
@@ -40,11 +40,12 @@ char *str_concat(char *s1, char *s2)
 	for (j = 0; j < len2; j++)
 		res[i + j] = s2[j];
 
-	res[strlen(res)] = '\n';
-
+	res[len1 + len2] = '\n';
+	res[len1 + len2 + 1] = '\0';
 	return (res);
 
 }
+
 
 /**
  * argstostr - unction that frees a 2 dimensional grid previously
@@ -56,17 +57,21 @@ char *str_concat(char *s1, char *s2)
 char *argstostr(int ac, char **av)
 {
 	char *res = NULL;
-	int i;
+	unsigned int i;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	for (i = 0; i < ac; i++)
+
+	for (i = 0; (int) i < ac; i++)
 	{
 		res = str_concat(res, av[i]);
 
 		if (res == NULL)
+		{
+			free(res);
 			return (NULL);
+		}
 	}
 
 	return (res);
