@@ -12,23 +12,12 @@
 
 char *str_concat(char *s1, char *s2)
 {
-	unsigned long int len1;
-	unsigned long int len2;
+	unsigned long int len1 = (s1 != NULL) ? strlen(s1) : 0;
+	unsigned long int len2 = (s2 != NULL) ? strlen(s2) : 0;
 	unsigned long int i, j;
 	char *res;
 
-	if (s1 == NULL)
-		len1 = 0;
-	else
-		len1 =  strlen(s1);
-
-	if (s2 == NULL)
-		len2 = 0;
-	else
-		len2 =  strlen(s2);
-
-
-	res = malloc(len1 + len2 + 1);
+	res = malloc(len1 + len2 + 2);
 
 	if (res == NULL)
 		return (NULL);
@@ -42,6 +31,7 @@ char *str_concat(char *s1, char *s2)
 
 	res[len1 + len2] = '\n';
 	res[len1 + len2 + 1] = '\0';
+
 	return (res);
 
 }
@@ -56,22 +46,25 @@ char *str_concat(char *s1, char *s2)
 
 char *argstostr(int ac, char **av)
 {
-	char *res = NULL;
-	unsigned int i;
+	char *res = NULL, *tmp = NULL;
+	int i;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
 
-	for (i = 0; (int) i < ac; i++)
+	for (i = 0; i < ac; i++)
 	{
-		res = str_concat(res, av[i]);
+		tmp = str_concat(res, av[i]);
 
-		if (res == NULL)
+		if (tmp == NULL)
 		{
 			free(res);
 			return (NULL);
 		}
+
+		free(res);
+		res = tmp;
 	}
 
 	return (res);
