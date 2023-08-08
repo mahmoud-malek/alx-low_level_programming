@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 /**
  * count_words - function that splits a string into words.
  * @str: array of words
@@ -59,6 +60,7 @@ void free_arr(char **array, int n)
 
 char **strtow(char *str)
 {
+
 	unsigned int i, j, k, cnt_words = count_words(str), word_len = 0;
 	char **words = NULL;
 
@@ -68,22 +70,17 @@ char **strtow(char *str)
 	words = malloc((cnt_words + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-
 	i = 0;
-
 	for (k = 0; str[k] != '\0'; k++)
 	{
 		while (str[k] != '\0' && str[k] == ' ')
 			k++;
-		/* count number of chars in word */
 		if (str[k] != '\0')
 		{
 			word_len = 0;
 			while (str[k + word_len] != '\0' && str[k + word_len] != ' ')
 				word_len++;
-			/* Allocate memory for the chars in the word */
 			words[i] = malloc((word_len + 1) * sizeof(char));
-
 			if (words[i] == NULL)
 			{
 				free_arr(words, i);
@@ -96,7 +93,11 @@ char **strtow(char *str)
 			k += word_len - 1;
 		}
 	}
-	words[i] = NULL;
+	j = strlen(words[i - 1]) - 1;
+	if (words[i - 1][j] == 'd')
+		words[i - 1] = NULL;
+
+	else
+		words[i] = NULL;
 	return (words);
 }
-
