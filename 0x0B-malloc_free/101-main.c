@@ -14,7 +14,7 @@ void print_tab(char **tab)
 
     for (i = 0; tab[i] != NULL; ++i)
     {
-        printf("%s ok\n", tab[i]);
+        printf("%s\n", tab[i]);
     }
 }
 

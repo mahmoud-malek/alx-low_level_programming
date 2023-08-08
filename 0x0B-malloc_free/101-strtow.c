@@ -16,16 +16,16 @@ int count_words(char *str)
 	for (i = 0; i < strlen(str); i++)
 	{
 		/* skipping spaces */
-		while (str[i] != '\0' && str[i++] == ' ')
-		;
+		while (str[i] != '\0' && str[i] == ' ')
+			i++;
 
 		/* walk through the word */
 		if (str[i] != '\0')
 		{
 			cnt_words++;
 
-			while (str[i] != '\0' && str[i++] != ' ')
-			;
+			while (str[i] != '\0' && str[i] != ' ')
+				i++;
 		}
 	}
 
@@ -96,7 +96,7 @@ char **strtow(char *str)
 			k += word_len - 1;
 		}
 	}
-	words[i - 1] = NULL;
+	words[i] = NULL;
 	return (words);
 }
 
