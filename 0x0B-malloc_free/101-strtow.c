@@ -60,7 +60,6 @@ void free_arr(char **array, int n)
 
 char **strtow(char *str)
 {
-
 	unsigned int i, j, k, cnt_words = count_words(str), word_len = 0;
 	char **words = NULL;
 
@@ -94,9 +93,8 @@ char **strtow(char *str)
 		}
 	}
 	j = strlen(words[i - 1]) - 1;
-	if (words[i - 1][j] == 'd')
+	if (words[i - 1][j] == 'd' && cnt_words > 0)
 		words[i - 1] = NULL;
-
 	else
 		words[i] = NULL;
 	return (words);
