@@ -3,53 +3,49 @@
 #include <string.h>
 #include <ctype.h>
 
-
 /**
- * count_words - function that splits a string into words.
+ * count_words - count the number of words separated by spaces
  * @str: array of words
  * Return: Resulting array
 */
 
 int count_words(char *str)
 {
-	unsigned int i, cnt_words = 0;
+	int word_count = 0;
+	int in_word = 0;
 
-	for (i = 0; i < strlen(str); i++)
+	while (*str != '\0')
 	{
-		/* skipping spaces */
-		while (str[i] != '\0' && str[i] == ' ')
-			i++;
-
-		/* walk through the word */
-		if (str[i] != '\0')
+		if (isspace(*str))
 		{
-			cnt_words++;
-
-			while (str[i] != '\0' && str[i] != ' ')
-				i++;
+			in_word = 0;
 		}
+		else if (!in_word)
+		{
+			in_word = 1;
+			word_count++;
+		}
+
+		str++;
 	}
 
-	return (cnt_words);
+	return (word_count);
 }
 
 /**
- * free_arr - function that splits a string into words.
- * @array: array of words
- * @n: size
+ * free_words - free allocated memory
+ * @words: array of words
  * Return: Resulting array
 */
 
-void free_arr(char **array, int n)
+void free_words(char **words)
 {
 	int i;
 
-	for (i = 0; i < n; i++)
-	{
-		free(array[i]);
-	}
+	for (i = 0; words[i] != NULL; i++)
+		free(words[i]);
 
-	free(array);
+	free(words);
 }
 
 /**
@@ -60,42 +56,41 @@ void free_arr(char **array, int n)
 
 char **strtow(char *str)
 {
-	unsigned int i, j, k, cnt_words = count_words(str), word_len = 0;
+	int word_count = 0, i = 0;
 	char **words = NULL;
+	char *str_copy, *token;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
-	/* Allocating memory for words */
-	words = malloc((cnt_words + 1) * sizeof(char *));
-	if (words == NULL)
+
+	str_copy = strdup(str);
+	if (str_copy == NULL)
 		return (NULL);
-	i = 0;
-	for (k = 0; str[k] != '\0'; k++)
+
+	word_count = count_words(str);
+	words = malloc((word_count + 1) * sizeof(char *));
+	if (words == NULL || word_count == 0)
 	{
-		while (str[k] != '\0' && str[k] == ' ')
-			k++;
-		if (str[k] != '\0')
-		{
-			word_len = 0;
-			while (str[k + word_len] != '\0' && str[k + word_len] != ' ')
-				word_len++;
-			words[i] = malloc((word_len + 1) * sizeof(char));
-			if (words[i] == NULL)
-			{
-				free_arr(words, i);
-				return (NULL);
-			}
-			for (j = 0; j < word_len; j++)
-				words[i][j] = str[k + j];
-			words[i][j] = '\0';
-			i++; /* move to next word */
-			k += word_len - 1;
-		}
+		free(str_copy);
+		return (NULL);
 	}
-	j = strlen(words[i - 1]) - 1;
-	if (words[i - 1][j] == 'd' && cnt_words > 0)
-		words[i - 1] = NULL;
-	else
-		words[i] = NULL;
+
+	token = strtok(str_copy, " ");
+	while (token != NULL)
+	{
+		words[i] = strdup(token);
+
+		if (words[i] == NULL)
+		{
+			free_words(words);
+			free(str_copy);
+			return (NULL);
+		}
+		i++;
+		token = strtok(NULL, " ");
+	}
+	words[i] = NULL;
+
+	free(str_copy);
 	return (words);
 }
