@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "main.h"
-#include <string.h>
-
 
 /**
  * is_digit - checks if a string contains a non-digit char
@@ -24,9 +22,26 @@ int is_digit(char *s)
 }
 
 /**
- * ere - fast check for errors
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
  */
-void err(void)
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * errors - handles errors for main
+ */
+void errors(void)
 {
 	printf("Error\n");
 	exit(98);
@@ -46,9 +61,9 @@ int main(int argc, char *argv[])
 
 	s1 = argv[1], s2 = argv[2];
 	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
-		err();
-	len1 = strlen(s1);
-	len2 = strlen(s2);
+		errors();
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
 	len = len1 + len2 + 1;
 	result = malloc(sizeof(int) * len);
 	if (!result)
@@ -59,7 +74,7 @@ int main(int argc, char *argv[])
 	{
 		digit1 = s1[len1] - '0';
 		carry = 0;
-		for (len2 = strlen(s2) - 1; len2 >= 0; len2--)
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
 		{
 			digit2 = s2[len2] - '0';
 			carry += result[len1 + len2 + 1] + (digit1 * digit2);
@@ -74,11 +89,11 @@ int main(int argc, char *argv[])
 		if (result[i])
 			a = 1;
 		if (a)
-			putchar(result[i] + '0');
+			_putchar(result[i] + '0');
 	}
 	if (!a)
-		putchar('0');
-	putchar('\n');
+		_putchar('0');
+	_putchar('\n');
 	free(result);
 	return (0);
 }
