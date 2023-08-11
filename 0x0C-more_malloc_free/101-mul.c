@@ -1,8 +1,34 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <string.h>
 #include "main.h"
+
+/**
+ * digit - checks if a non-digit char
+ * @c: char to be evaluated
+ * Return: 0 if a non-digit is found, 1 otherwise
+ */
+int digit(char c)
+{
+	if (c < '0' || c > '9')
+		return (0);
+	return (1);
+}
+
+/**
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+		i++;
+
+	return (i);
+}
 
 /**
  * valid - checks whether str has non digit
@@ -11,12 +37,12 @@
  */
 int valid(char *str)
 {
-	unsigned int i;
+	 int i;
 
 	if (str == NULL)
 		return (0);
-	for (i = 0; i < strlen(str); i++)
-		if (!isdigit(str[i]))
+	for (i = 0; i < _strlen(str); i++)
+		if (!digit(str[i]))
 			return (0);
 
 	return (1);
@@ -49,8 +75,8 @@ int main(int argc, char **argv)
 	if (argc != 3 || !valid(n1) || !valid(n2))
 		myexit();
 
-	len1 = strlen(n1);
-	len2 = strlen(n2);
+	len1 = _strlen(n1);
+	len2 = _strlen(n2);
 	len = len1 + len2 + 1;
 	res = malloc(sizeof(char) * len);
 
