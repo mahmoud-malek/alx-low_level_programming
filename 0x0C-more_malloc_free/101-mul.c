@@ -85,11 +85,12 @@ int main(int argc, char **argv)
 	{
 		putchar('0');
 		putchar('\n');
+		return (0);
 	}
 	res = malloc(sizeof(char) * len);
 
 	if (res == NULL)
-		myexit();
+		return (1);
 
 	for (i = 0; i <= len1 + len2; i++)
 		res[i] = '0';
