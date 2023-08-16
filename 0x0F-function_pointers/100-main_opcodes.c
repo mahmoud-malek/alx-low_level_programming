@@ -30,9 +30,11 @@ int main(int argc, char **argv)
 
 	unsigned char *ref = (unsigned char *)main;
 
-	for (i = 0; i < strlen(argv[1]); i++)
+	for (i = 0; i < num; i++)
 	{
-		printf("%02x ", ref[i]);
+		printf("%02x", ref[i]);
+		if (i != num - 1)
+			printf(" ");
 	}
 	printf("\n");
 
