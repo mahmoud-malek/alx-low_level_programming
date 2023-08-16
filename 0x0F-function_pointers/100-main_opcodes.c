@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	{
 		printf("%02x ", ref[i]);
 	}
+	printf("\n");
 
 	return (0);
 }
