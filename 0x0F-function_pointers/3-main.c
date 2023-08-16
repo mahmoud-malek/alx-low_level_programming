@@ -27,14 +27,14 @@ int main(int argc, char *argv[])
 	if ((!strcmp(argv[2], "%") || !strcmp(argv[2], "/")) && num2 == 0)
 	{
 		printf("Error\n");
-		exit(99);
+		exit(100);
 	}
 
 
 	if (get_op_func(argv[2]) == NULL)
 	{
 		printf("Error\n");
-		exit(100);
+		exit(98);
 	}
 
 	printf("%d\n",  get_op_func(argv[2])(num1, num2));
