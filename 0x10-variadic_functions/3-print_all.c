@@ -8,39 +8,33 @@
 void print_all(const char *const format, ...)
 {
 	va_list vals;
-	int i = 0, found, len = strlen(format);
-	char *str;
+	int i = 0, len = strlen(format);
+	char *sep = "", *str;
 
 	va_start(vals, format);
 	while (i < len && format)
 	{
-		found = 0;
 		switch (format[i])
 		{
 		case 'c':
-			printf("%c", va_arg(vals, int));
-			found = 1;
+			printf("%s%c", sep, va_arg(vals, int));
+			sep = ", ";
 			break;
 		case 'i':
-			printf("%d", va_arg(vals, int));
-			found = 1;
+			printf("%s%d", sep, va_arg(vals, int));
 			break;
 		case 'f':
-			printf("%f", va_arg(vals, double));
-			found = 1;
+			printf("%s%f", sep, va_arg(vals, double));
 			break;
 		case 's':
-			found = 1;
 			str = va_arg(vals, char *);
 			if (str == NULL)
 				str = "(nil)";
 
-			printf("%s", str);
+			printf("%s%s", sep, str);
 			break;
 		}
 
-		if (i < len - 1 && found)
-			printf(", ");
 		i++;
 	}
 
