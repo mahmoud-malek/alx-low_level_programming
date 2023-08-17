@@ -8,11 +8,11 @@
 void print_all(const char *const format, ...)
 {
 	va_list vals;
-	int i = 0, len = strlen(format);
+	int i = 0;
 	char *sep = "", *str;
 
 	va_start(vals, format);
-	while (i < len && format)
+	while (format && format[i])
 	{
 		switch (format[i])
 		{
@@ -20,14 +20,17 @@ void print_all(const char *const format, ...)
 			printf("%s%c", sep, va_arg(vals, int));
 			sep = ", ";
 			break;
+
 		case 'i':
 			printf("%s%d", sep, va_arg(vals, int));
 			sep = ", ";
 			break;
+
 		case 'f':
 			printf("%s%f", sep, va_arg(vals, double));
 			sep = ", ";
 			break;
+
 		case 's':
 			str = va_arg(vals, char *);
 			if (str == NULL)
