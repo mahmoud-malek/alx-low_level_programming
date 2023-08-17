@@ -12,37 +12,36 @@ void print_all(const char *const format, ...)
 	char *separator = "";
 
 	va_start(vals, format);
-
 	while (format && format[i])
 	{
-		printf("%s", separator);
 		switch (format[i])
 		{
 		case 'c':
-			printf("%c", va_arg(vals, int));
+			printf("%s%c", separator, va_arg(vals, int));
+			separator = ", ";
 			break;
 		case 'i':
-			printf("%d", va_arg(vals, int));
+			printf("%s%d", separator, va_arg(vals, int));
+			separator = ", ";
 			break;
 		case 'f':
-			printf("%f", va_arg(vals, double));
+			printf("%s%f", separator, va_arg(vals, double));
+			separator = ", ";
 			break;
 		case 's':
 		{
 			char *v = va_arg(vals, char *);
 
 			if (v == NULL)
-			{
 				v = "(nil)";
-			}
-			printf("%s", v);
+			printf("%s%s", separator, v);
+			separator = ", ";
 			break;
 		}
 		default:
 			i++;
 			continue;
 		}
-		separator = ", ";
 		i++;
 	}
 	printf("\n");
