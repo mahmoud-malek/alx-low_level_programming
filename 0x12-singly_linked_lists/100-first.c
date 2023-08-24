@@ -1,13 +1,13 @@
 #include <stdio.h>
 
-void beforee(void) __attribute__((constructor));
-/**
- * beforee - a function that prints string before main
- * Description: this function is executed before the main
- */
+void before_main(void) __attribute__ ((constructor));
 
-void beforee(void)
+/**
+ * before_main - prints a string before the main
+ * function is executed
+ */
+void before_main(void)
 {
-	printf("You're beat! and yet,you must allow,\n");
+	printf("You're beat! and yet, you must allow,\n");
 	printf("I bore my house upon my back!\n");
 }
