@@ -1,5 +1,6 @@
-#include "lists.h"
+#include <stdio.h>
 
+void beforee(void) __attribute__((constructor));
 /**
  * beforee - a function that prints string before main
  * Description: this function is executed before the main
