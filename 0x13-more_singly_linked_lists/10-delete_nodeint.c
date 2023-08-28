@@ -10,7 +10,7 @@
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	listint_t *hold, *traverse;
+	listint_t *hold = NULL, *traverse;
 
 	if (head == NULL || *head == NULL)
 		return (-1);
@@ -36,12 +36,11 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		}
 
 		/*if element is exists or index > length of the list*/
-		if (traverse->next == NULL || index > 1)
+		if (index > 1 || traverse == NULL || traverse->next == NULL)
 			return (-1);
 
 		hold = traverse->next;
 		traverse->next = hold->next;
-		hold->next = NULL;
 		free(hold);
 		return (1);
 	}
