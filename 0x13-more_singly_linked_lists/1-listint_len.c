@@ -1,20 +1,18 @@
 #include "lists.h"
 
 /**
- * print_listint - a function that prints all the elements of a listint_t list
+ * listint_len -  a function that returns the number of elements
+ *  in a linked listint_t list
  * @h: is a strcut contain elements
  * Return: number of nodes
  */
 
-size_t print_listint(const listint_t *h)
+size_t listint_len(const listint_t *h)
 {
 	int nodes = 0;
 
 	for (; h != NULL; h = h->next)
-	{
-		printf("%d\n", h->n);
 		nodes++;
-	}
 
 	return (nodes);
 }
