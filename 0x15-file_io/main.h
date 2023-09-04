@@ -1,6 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define ERROR_CANNOT_READ_FILE "Error: Can't read file %s\n"
+#define ERROR_NOT_ELF_FILE "Error: Not an ELF file\n"
+#define ERROR_CANNOT_CLOSE_FD "Error: Can't close fd %d\n"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
