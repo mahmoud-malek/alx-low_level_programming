@@ -11,7 +11,8 @@ def island_perimeter(grid):
     length = len(grid)
     perimeter = 0
     for i in range(length):
-        for j in range(length):
+        inner_len = len(grid[i])
+        for j in range(inner_len):
             if (grid[i][j] == 1):
                 # Check top edge
                 if grid[i - 1][j] == 0:
