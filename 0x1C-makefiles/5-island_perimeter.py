@@ -9,10 +9,21 @@ def island_perimeter(grid):
     inside a grid
     """
     length = len(grid)
-    num_of_ones = 0
+    perimeter = 0
     for i in range(length):
         for j in range(length):
             if (grid[i][j] == 1):
-                num_of_ones += 1
+                # Check top edge
+                if grid[i - 1][j] == 0:
+                    perimeter += 1
+                # Check bottom edge
+                if grid[i + 1][j] == 0:
+                    perimeter += 1
+                # Check left edge
+                if grid[i][j - 1] == 0:
+                    perimeter += 1
+                # Check right edge
+                if grid[i][j + 1] == 0:
+                    perimeter += 1
 
-    return (num_of_ones + 1) * 2
+    return perimeter
