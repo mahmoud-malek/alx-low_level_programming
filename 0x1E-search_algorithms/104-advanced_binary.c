@@ -18,6 +18,9 @@ int lower_bound(int *array, int top, int down, int value)
 	if (top == down && array[mid] != value)
 		return (-1);
 
+	if (top == down)
+		return (mid);
+
 	printf("Searching in array:");
 	for (i = down; i <= top; i++)
 	{
@@ -27,8 +30,7 @@ int lower_bound(int *array, int top, int down, int value)
 	}
 	printf("\n");
 
-	if (top == down)
-		return (mid);
+
 
 	if (array[mid] < value)
 		return (lower_bound(array, top, mid + 1, value));
